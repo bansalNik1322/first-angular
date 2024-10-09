@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule, FontAwesomeModule],
   templateUrl: './password.component.html',
+  styleUrl: './password.component.css',
 })
 export class PasswordComponent {
   passwordVisible: boolean = false;

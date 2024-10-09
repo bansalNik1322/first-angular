@@ -1,6 +1,6 @@
 .container {
   width: 50%;
-  background-color: #ffffff;
+  background-color: transparent;
   -webkit-box-shadow: 2px 1px 13px 0px rgba(194, 177, 194, 1);
   -moz-box-shadow: 2px 1px 13px 0px rgba(194, 177, 194, 1);
   box-shadow: 2px 1px 13px 0px rgba(194, 177, 194, 1);
@@ -22,4 +22,25 @@
 
 .container .form-group button {
   float: right;
+}
+
+input{
+  background-color: rgb(253, 243, 243);
+  outline: none;
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 5px;
+  color: black;
+}
+input:focus, input:hover{
+  background-color: rgb(255, 255, 255);
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-bottom: 2px solid black;
+  color: black;
+}
+
+input::placeholder{
+  color: black;
 }
