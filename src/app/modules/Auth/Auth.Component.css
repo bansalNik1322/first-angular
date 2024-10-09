@@ -1,0 +1,25 @@
+.container {
+  width: 50%;
+  background-color: #ffffff;
+  -webkit-box-shadow: 2px 1px 13px 0px rgba(194, 177, 194, 1);
+  -moz-box-shadow: 2px 1px 13px 0px rgba(194, 177, 194, 1);
+  box-shadow: 2px 1px 13px 0px rgba(194, 177, 194, 1);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.container h3,
+.container h4 {
+  text-align: center;
+}
+
+.container .form-group {
+  margin-bottom: 0.5rem;
+}
+.container .form-group:last-child {
+  margin-bottom: 20px; /* Example style */
+}
+
+.container .form-group button {
+  float: right;
+}

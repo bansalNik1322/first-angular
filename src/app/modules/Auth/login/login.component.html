@@ -1,0 +1,67 @@
+<div style="margin-top: 100px" class="container m-10 w-60">
+  <h3>Welcome Back</h3>
+  <div class="text-center" style="border: none">
+    <img [src]="profileImage" alt="User Profile" />
+  </div>
+  <form
+    [formGroup]="loginForm"
+    class="row d-flex justify-content-center"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        formControlName="email"
+        type="email"
+        id="email"
+        class="form-control"
+        placeholder="Enter your email"
+        required
+      />
+      <div class="text-danger" *ngIf="loginForm.controls['email'].touched">
+        <span *ngIf="loginForm.controls['email'].errors?.['required']"
+          >This is required</span
+        >
+        <span *ngIf="loginForm.controls['email'].errors?.['email']"
+          >Invalid email format</span
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <app-password
+        (passwordValueChange)="onPasswordChange($event)"
+        [(passwordValue)]="password"
+      ></app-password>
+      <div class="text-danger" *ngIf="loginForm.controls['password'].touched">
+        <span *ngIf="loginForm.controls['password'].errors?.['required']"
+          >Password is required</span
+        >
+        <span *ngIf="loginForm.controls['password'].errors?.['minlength']"
+          >Password should be atleast 6 char long.</span
+        >
+      </div>
+    </div>
+    <p style="margin-top: -20px; text-align: right">
+      <a href="" class="text-danger text-decoration-none"> Forgot Password </a>
+    </p>
+
+    <button type="submit" class="btn btn-primary col-sm-2">Login</button>
+    <p class="me-2 mt-2 text-secondary text-center">
+      Don't have an Account?
+      <a href="" class="text-primary text-decoration-none">Create One</a>
+    </p>
+  </form>
+
+  <div class="text-secondary text-center">
+    <a href="#" class="btn btn-danger mr-2">
+      <i class="fa fa-google" aria-hidden="true"></i>
+      Google
+    </a>
+    <a href="#" class="btn btn-primary">
+      <i class="fab fa-facebook" aria-hidden="true"></i>
+      Facebook
+    </a>
+  </div>
+</div>
