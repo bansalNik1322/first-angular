@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LayoutComponent } from '../../../components/Common/layout/layout.component';
+import { ToastComponent } from '../../../components/Common/toast/toast.component';
 
 export const authRoutes: Routes = [
   {
@@ -12,7 +13,7 @@ export const authRoutes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent,
+    component: ToastComponent,
   },
   {
     path: 'reset-password',

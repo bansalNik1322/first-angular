@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { passwordMatchValidator } from '../../../../Common/Validators';
 import { AuthSharedModule } from '../Auth.module';
 import { PasswordComponent } from '../../../../components/Common/password/password.component';
+import { passwordMatchValidator } from '../../../Common/Validators';
 
 @Component({
   selector: 'app-reset-password',

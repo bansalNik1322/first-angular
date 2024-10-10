@@ -1,104 +1,122 @@
-<div class="container mt-5 m-10 w-60">
-  <h3>Get Started</h3>
-  <form
-    [formGroup]="registerForm"
-    class="row d-flex justify-content-center"
-  >
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        required
-        placeholder="Enter your username"
-        ngModel
-        formControlName="username"
-        name="username"
-      />
-      <div
-        class="text-danger"
-        *ngIf="registerForm.controls['username'].touched"
-      >
-        <span *ngIf="registerForm.controls['username'].errors?.['required']"
-          >This is required</span
+<div
+  class="d-flex align-items-center bg-secondary justify-content-center"
+  style="
+    height: 100%;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpqzuS6Pij-N7tCgRmsBTWxWwP1nUPl4ws1w&s);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  "
+>
+  <div class="container" style="width: 35%" class="text-light">
+    <p-messages [(value)]="messages" closable="true"></p-messages>
+    <h2 class="text-light text-center">Get Started!</h2>
+    <form [formGroup]="registerForm" class="row d-flex justify-content-center">
+      <div class="form-group">
+        <label for="username"
+          >Username <fa-icon class="text-white" [icon]="faUser"></fa-icon>
+        </label>
+        <input
+          type="text"
+          id="username"
+          class="form-control"
+          required
+          placeholder="Enter your username"
+          ngModel
+          formControlName="username"
+          name="username"
+        />
+        <div
+          class="text-danger"
+          *ngIf="registerForm.controls['username'].touched"
         >
+          <span *ngIf="registerForm.controls['username'].errors?.['required']"
+            >This is required</span
+          >
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        class="form-control"
-        required
-        ngModel
-        placeholder="Enter your email"
-        formControlName="email"
-        name="email"
-      />
-      <div class="text-danger" *ngIf="registerForm.controls['email'].touched">
-        <span *ngIf="registerForm.controls['email'].errors?.['required']"
-          >This is required</span
-        >
-        <span *ngIf="registerForm.controls['email'].errors?.['email']"
-          >Invalid email format</span
-        >
+      <div class="form-group">
+        <label for="email"
+          >Email <fa-icon class="text-white" [icon]="faEnvelope"></fa-icon
+        ></label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          required
+          ngModel
+          placeholder="Enter your email"
+          formControlName="email"
+          name="email"
+        />
+        <div class="text-danger" *ngIf="registerForm.controls['email'].touched">
+          <span *ngIf="registerForm.controls['email'].errors?.['required']"
+            >This is required</span
+          >
+          <span *ngIf="registerForm.controls['email'].errors?.['email']"
+            >Invalid email format</span
+          >
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="password">Password</label>
-      <app-password
-        (passwordValueChange)="onPasswordChange($event)"
-        [(passwordValue)]="password"
-      ></app-password>
-      <div
-        class="text-danger"
-        *ngIf="registerForm.controls['password'].touched"
-      >
-        <span *ngIf="registerForm.controls['password'].errors?.['required']"
-          >This is required</span
+      <div class="form-group">
+        <label for="password"
+          >Password <fa-icon class="text-white" [icon]="faLock"></fa-icon
+        ></label>
+        <app-password
+          (passwordValueChange)="onPasswordChange($event)"
+          [(passwordValue)]="password"
+        ></app-password>
+        <div
+          class="text-danger"
+          *ngIf="registerForm.controls['password'].touched"
         >
-        <span *ngIf="registerForm.controls['password'].errors?.['minlength']"
-          >Password should be atleast 6 char long.</span
-        >
+          <span *ngIf="registerForm.controls['password'].errors?.['required']"
+            >This is required</span
+          >
+          <span *ngIf="registerForm.controls['password'].errors?.['minlength']"
+            >Password should be atleast 6 char long.</span
+          >
+        </div>
       </div>
-    </div>
 
-    <div class="form-group" style="margin-top: -10px">
-      <label for="confirmPassword">Confirm Password</label>
-      <app-password
-        (passwordValueChange)="onConfirmPasswordChange($event)"
-        [(passwordValue)]="confirmPassword"
-        [passwordOrConfirm]="true"
-      ></app-password>
-      <div
-        class="text-danger"
-        *ngIf="registerForm.controls['password'].touched"
-      >
-        <span *ngIf="registerForm.errors?.['passwordMismatch']"
-          >Passwords do not match</span
+      <div class="form-group" style="margin-top: -10px">
+        <label for="confirmPassword"
+          >Confirm Password
+          <fa-icon class="text-white" [icon]="faLock"></fa-icon
+        ></label>
+        <app-password
+          (passwordValueChange)="onConfirmPasswordChange($event)"
+          [(passwordValue)]="confirmPassword"
+          [passwordOrConfirm]="true"
+        ></app-password>
+        <div
+          class="text-danger"
+          *ngIf="registerForm.controls['password'].touched"
         >
+          <span *ngIf="registerForm.errors?.['passwordMismatch']"
+            >Passwords do not match</span
+          >
+        </div>
       </div>
+
+      <button type="submit" class="btn btn-primary col-sm-2">Register</button>
+      <p class="me-2 mt-2 text-secondary text-center">
+        Already have an account?
+        <a href="" class="text-decoration-none">Login Here</a>
+      </p>
+    </form>
+
+    <div class="text-secondary text-center">
+      <a href="#" class="btn btn-danger mr-2">
+        <i class="fa fa-google" aria-hidden="true"></i>
+        Google
+      </a>
+      <a href="#" class="btn btn-primary">
+        <i class="fab fa-facebook" aria-hidden="true"></i>
+        Facebook
+      </a>
     </div>
-
-    <button type="submit" class="btn btn-primary col-sm-2">Register</button>
-    <p class="me-2 mt-2 text-secondary text-center">
-      Already have an account?
-      <a href="" class="text-decoration-none">Login Here</a>
-    </p>
-  </form>
-
-  <div class="text-secondary text-center">
-    <a href="#" class="btn btn-danger mr-2">
-      <i class="fa fa-google" aria-hidden="true"></i>
-      Google
-    </a>
-    <a href="#" class="btn btn-primary">
-      <i class="fab fa-facebook" aria-hidden="true"></i>
-      Facebook
-    </a>
   </div>
 </div>

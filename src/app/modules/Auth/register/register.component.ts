@@ -2,18 +2,38 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'; // For ngModel
 import { AuthSharedModule } from '../Auth.module';
 import { PasswordComponent } from '../../../../components/Common/password/password.component';
-import { passwordMatchValidator } from '../../../../Common/Validators';
 import { FloatLabelModule } from 'primeng/floatlabel'; // Import the FloatLabelModule
-import { IconsModule } from '../../../../Common/Icon.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { passwordMatchValidator } from '../../../Common/Validators';
+import { MessagesModule } from 'primeng/messages';
+import { ButtonModule } from 'primeng/button';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [AuthSharedModule, FloatLabelModule, IconsModule, PasswordComponent],
+  imports: [
+    ButtonModule,
+    AuthSharedModule,
+    FloatLabelModule,
+    FontAwesomeModule,
+    PasswordComponent,
+    MessagesModule,
+  ],
   templateUrl: './register.component.html',
   styleUrl: '../Auth.Component.css',
 })
 export class RegisterComponent {
+  faUser = faUser;
+  faEnvelope = faEnvelope;
+  faLock = faLock;
+  messages: Message[] = [
+    {
+      severity: 'error',
+      detail: 'There was an error processing your request.',
+    },
+  ];
   password: string = '';
   confirmPassword: string = '';
 

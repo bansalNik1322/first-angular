@@ -6,8 +6,9 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CardModule } from 'primeng/card';
-import { IconsModule } from '../../../Common/Icon.module';
 import { MatIconModule } from '@angular/material/icon';
+import { IconsModule } from '../../Common/Modules/Icon.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     CardModule,
     IconsModule,
+    ToastrModule.forRoot(),
   ],
   exports: [
     CommonModule,

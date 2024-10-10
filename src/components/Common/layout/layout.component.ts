@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IconsModule } from '../../../Common/Icon.module';
 import {
   animate,
   state,
@@ -7,6 +6,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { IconsModule } from '../../../app/Common/Modules/Icon.module';
 
 @Component({
   selector: 'app-layout',
