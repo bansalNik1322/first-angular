@@ -1,0 +1,16 @@
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 16px;
+  border-radius: 8px;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 0.5s;
+}
+.success {
+  background-color: green;
+}
+.error {
+  background-color: red;
+}

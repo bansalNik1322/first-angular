@@ -6,6 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { MessageService } from 'primeng/api';
+import { ToastrModule } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [

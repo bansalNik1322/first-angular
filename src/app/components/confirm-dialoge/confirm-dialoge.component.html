@@ -1,12 +1,5 @@
-<button
-  pButton
-  (click)="confirm()"
-  icon="pi pi-trash"
-  label="Delete Item"
-  class="p-button-danger"
-></button>
-
-<p-confirmDialog *ngIf="type === 'save'" #cd>
+ 
+<p-confirmDialog *ngIf="dialogType === 'save'" #cd [dismissableMask]="true">
   <ng-template pTemplate="headless" let-message>
     <div
       class="flex flex-column bg-light align-items-center text-center surface-overlay border-round"
@@ -54,7 +47,7 @@
     </div>
   </ng-template>
 </p-confirmDialog>
-<p-confirmDialog *ngIf="type === 'delete'" #cd>
+<p-confirmDialog *ngIf="dialogType === 'delete'" [dismissableMask]="true" #cd>
   <ng-template pTemplate="headless" let-message>
     <div
       class="flex flex-column bg-light align-items-center text-center surface-overlay border-round"
@@ -88,7 +81,7 @@
       <div class="flex align-items-center gap-2 mt-4">
         <button
           pButton
-          label="Save"
+          label="Delete"
           (click)="cd.accept()"
           class="btn btn-danger"
         ></button>
@@ -102,3 +95,5 @@
     </div>
   </ng-template>
 </p-confirmDialog>
+
+<app-toasts></app-toasts>

@@ -10,12 +10,13 @@ export class ConfirmationDialogService {
     private messageService: MessageService
   ) {}
 
-  confirm(
+  openConfirmDialoge(
     header: string,
     message: string,
     acceptCallback: () => void,
     rejectCallback: () => void
   ) {
+    console.log('🚀 ~ ConfirmationDialogService ~ rejectCallback:');
     this.confirmationService.confirm({
       header: header,
       message: message,

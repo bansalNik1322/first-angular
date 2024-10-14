@@ -66,6 +66,7 @@
                   *ngIf="action.value !== 'Delete'"
                   data-toggle="tooltip"
                   [title]="action.value"
+                  (click)="openConfirmDialoge('save')"
                   style="
                     margin-right: 5px;
                     border: none;
@@ -78,7 +79,7 @@
                   *ngIf="action.value === 'Delete'"
                   data-toggle="tooltip"
                   [title]="action.value"
-                  (onclick)="openConfirmDialoge('delete')"
+                  (click)="openConfirmDialoge('delete')"
                   style="
                     margin-right: 5px;
                     border: none;
@@ -93,10 +94,10 @@
         </ng-container>
       </tr>
     </ng-template>
-    <app-confirm-dialoge></app-confirm-dialoge>
   </p-table>
   <app-overlay
-    [column]="selectedColumn"
-    (applyClicked)="handleApply($event)"
+  [column]="selectedColumn"
+  (applyClicked)="handleApply($event)"
   ></app-overlay>
+  <app-confirm-dialoge></app-confirm-dialoge>
 </div>

@@ -1,49 +1,52 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { UiSharedModule } from '../../Common/UIShared.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmationDialogService } from '../../service/confirm-dialoge.service';
-import { ToasterService } from '../../service/toaster.service';
-import { ToastComponent } from '../toast/toast.component';
+import { ToastService } from '../../service/toast.service';
+import { ToastsContainer } from '../toast/Toast.container.component';
 
 @Component({
   selector: 'app-confirm-dialoge',
   standalone: true,
-  imports: [UiSharedModule, ToastComponent],
+  imports: [UiSharedModule, ToastsContainer],
   providers: [
     MessageService,
     UiSharedModule,
     ConfirmationService,
+    ToastService,
     ConfirmationDialogService,
-    ToasterService,
   ],
   styleUrl: './confirm-dialoge.component.css',
-  template: ` <button (click)="showSuccess()">Show Success Toast</button> `,
+  templateUrl: './confirm-dialoge.component.html',
 })
 export class ConfirmDialogeComponent {
-  type = 'delete';
+  @Input() dialogType: string = ''; // Type of dialog (save/delete)
+  @Input() message: { header: string; message: string } = {
+    header: '',
+    message: '',
+  };
 
-  showSuccess() {
-    this.toasterService.showSuccess('This is a success message!');
-  }
+  constructor(private confirmationService: ConfirmationService) {}
+  toastService = inject(ToastService);
 
-  constructor(
-    private toasterService: ToasterService,
-    private messageService: MessageService,
-    private confirmationDialogService: ConfirmationDialogService
-  ) {}
-
-  confirm() {
-    this.confirmationDialogService.confirm(
-      'Are you sure?',
-      'Please confirm to proceed.',
-      () => {
-        // Handle accept
+  openDialog() {
+    this.confirmationService.confirm({
+      header: this.message.header,
+      message: this.message.message,
+      accept: () => {
+        this.toastService.showToast(
+          'success',
+          'Operation completed successfully!'
+        );
         console.log('Accepted');
       },
-      () => {
-        // Handle reject
+      reject: () => {
         console.log('Rejected');
-      }
-    );
+        this.toastService.showToast(
+          'error',
+          'Operation completed successfully!'
+        );
+      },
+    });
   }
 }

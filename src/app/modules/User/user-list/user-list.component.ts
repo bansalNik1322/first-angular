@@ -10,6 +10,7 @@ import {
 import { UiSharedModule } from '../../../Common/UIShared.module';
 import { DialogComponent } from '../../../components/dialog/dialog.component';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
+import { ConfirmationDialogService } from '../../../service/confirm-dialoge.service';
 
 @Component({
   selector: 'app-user-list',
@@ -21,7 +22,7 @@ import { PaginationComponent } from '../../../components/pagination/pagination.c
     DialogComponent,
     PaginationComponent,
   ],
-  providers: [UserService],
+  providers: [UserService, ConfirmationDialogService],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css',
 })
