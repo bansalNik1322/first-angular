@@ -1,0 +1,8 @@
+.custom-dropdown .p-dropdown-label {
+  background-color: lightblue; /* Change background color */
+  color: darkblue; /* Change text color */
+}
+
+.custom-dropdown .p-dropdown-trigger {
+  border: 2px solid darkblue; /* Change border style */
+}

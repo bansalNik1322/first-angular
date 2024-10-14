@@ -1,0 +1,226 @@
+<app-layout>
+  <div style="margin-top: 20px; padding: 0 50px">
+    <div class="flex align-items-center justify-content-between tableTitle">
+      <h2>USERS</h2>
+    </div>
+    <ng-container>
+      <input
+        pInputText
+        type="text"
+        style="
+          width: 30%;
+          border-radius: 5px;
+          border: 1px solid #222e3c;
+          padding: 3px 3px 3px 15px;
+          background: transparent;
+          outline: none;
+        "
+        onmouseover="this.style.borderColor='#3d9bff'"
+        onmouseout="this.style.borderColor='#222e3c'"
+        placeholder="Search Here"
+      />
+      <button
+        class="btn btn-primary"
+        (click)="openColumnFilterDialoge()"
+        style="
+          float: right;
+          background-color: #0d89ec;
+          width: 170px;
+          height: 42px;
+          color: white;
+          font-size: 17px;
+          margin-left: 15px;
+          border-radius: 8px;
+          margin-top: -8px;
+        "
+      >
+        <i class="pi pi-filter"></i>
+        &nbsp;Filter Columns
+      </button>
+
+      <button
+        class="btn btn-primary"
+        style="
+          border-radius: 8px;
+          float: right;
+          background-color: #0d89ec;
+          width: 170px;
+          height: 42px;
+          color: white;
+          font-size: 17px;
+          margin-top: -8px;
+        "
+      >
+        <i class="pi pi-filter-slash"></i>
+        &nbsp; Clear Filters
+      </button>
+    </ng-container>
+    <app-table
+      [listData]="userListData"
+      (handleRulesChange)="handleRuleChange($event)"
+    >
+      <tr>
+        <ng-container *ngFor="let col of userListData.cols">
+          <th *ngIf="col.visible">
+            <div class="flex align-items-center">
+              {{ col.header }}
+              <i
+                *ngIf="col.filtering"
+                class="pi pi-filter"
+                style="
+                  cursor: pointer;
+                  margin-top: 0px;
+                  position: relative;
+                  top: 2px;
+                "
+              ></i>
+              <i
+                *ngIf="col.sorting"
+                [class]="col.sortIcon"
+                style="
+                  margin-left: 5px;
+                  cursor: pointer;
+                  margin-top: 0px;
+                  position: relative;
+                  top: 2px;
+                "
+              ></i>
+            </div>
+          </th>
+        </ng-container>
+      </tr>
+    </app-table>
+    <app-pagination></app-pagination>
+
+    <app-dialog
+      [cols]="userListData.cols"
+      [sortAndPaginationConfig]="userListData.sortAndPaginationConfig"
+      [visible]="columnFilterDialogeVisible"
+      (visibleChange)="dialogeVisibilityChanges($event)"
+      (sortAndPaginationConfigChanged)="sortAndPaginationConfigChange($event)"
+    >
+      <div style="padding: 20px" class="mainContainer">
+        <div style="gap: 20px" class="d-flex align-items-center">
+          <label for="" style="min-width: 63px; margin-top: 2px"
+            >Order By</label
+          >
+          <select
+            (change)="hanldleSortChange($event, 'Key')"
+            style="border-radius: 10px"
+            class="form-select"
+            aria-label="Default select example"
+            [(ngModel)]="userListData.sortAndPaginationConfig.sortKey"
+          >
+            <ng-container *ngFor="let col of userListData.cols">
+              <option *ngIf="col.key !== 'action'" [value]="col?.key">
+                {{ col?.header }}
+              </option>
+            </ng-container>
+          </select>
+        </div>
+
+        <div style="gap: 20px" class="d-flex align-items-center mt-3">
+          <label for="" style="min-width: 63px; margin-top: 2px">Order</label>
+          <select
+            (change)="hanldleSortChange($event, 'Order')"
+            style="border-radius: 10px"
+            class="form-select"
+            aria-label="Default select example"
+            [(ngModel)]="userListData.sortAndPaginationConfig.sortOrder"
+          >
+            <option [value]="col" *ngFor="let col of ['ASC', 'DESC']">
+              {{ col }}
+            </option>
+          </select>
+        </div>
+
+        <div class="mt-4">
+          <h3>Adjust Columns</h3>
+          <ng-container *ngFor="let col of userListData.cols">
+            <div
+              style="
+                border-radius: 10px;
+                color: white;
+                padding-top: 10px;
+                margin-top: 10px;
+                padding-bottom: 10px;
+                font-size: 18px;
+                justify-content: space-between;
+                background-color: #222e3c;
+              "
+            >
+              <div
+                style="
+                  min-width: 145px;
+                  margin-right: 20px;
+                  border-radius: 5px;
+                  padding: 0 20px;
+                "
+              >
+                <p class="mb-0 d-inline">{{ col.header }} &nbsp;</p>
+                <div style="float: right">
+                  <div class="d-inline">
+                    <label
+                      style="margin-left: 30px; margin-right: 10px"
+                      for="sorting"
+                      >Show</label
+                    >
+                    <input
+                      (change)="colFilterChange($event, 'visible', col.key)"
+                      type="checkbox"
+                      [checked]="col.visible"
+                      style="
+                        position: relative;
+                        top: 2px;
+                        width: 17px;
+                        height: 17px;
+                      "
+                    />
+                  </div>
+                  <div class="d-inline" style="float: center">
+                    <label
+                      style="margin-left: 30px; margin-right: 10px"
+                      for="sorting"
+                      >Sorting</label
+                    >
+                    <input
+                      type="checkbox"
+                      [checked]="col.sorting"
+                      [disabled]="col.key === 'action' || col.key === 'id'"
+                      (change)="colFilterChange($event, 'sorting', col.key)"
+                      style="
+                        position: relative;
+                        top: 2px;
+                        width: 17px;
+                        height: 17px;
+                      "
+                    />
+                  </div>
+                  <div class="d-inline" style="float: center">
+                    <label
+                      style="margin-left: 30px; margin-right: 10px"
+                      for="sorting"
+                      >Filters</label
+                    >
+                    <input
+                      type="checkbox"
+                      (change)="colFilterChange($event, 'filtering', col.key)"
+                      [checked]="col.filtering"
+                      [disabled]="col.key === 'action' || col.key === 'id'"
+                      style="
+                        position: relative;
+                        top: 2px;
+                        width: 17px;
+                        height: 17px;
+                      "
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </app-dialog>
+  </div>
+</app-layout>

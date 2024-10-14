@@ -1,0 +1,70 @@
+<div
+  (dragover)="onDragOver($event)"
+  (drop)="onDrop($event)"
+  data-toggle="tooltip"
+  title="Select Profile image or Drop the image here!!"
+  style="width: 40%; border: none"
+>
+  <div
+    class="drop-area"
+    style="
+      border-radius: 15px;
+      width: 350px;
+      text-align: center;
+      border-color: #222e3c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      padding-bottom: 20px;
+    "
+    onmouseover="this.style.backgroundColor='inherit'"
+  >
+    <input
+      type="file"
+      accept="image/*"
+      (change)="onFileSelected($event)"
+      style="display: none; border-radius: 50%"
+      #fileInput
+    />
+
+    <label
+      (click)="fileInput.click()"
+      *ngIf="!file"
+      class="choose-file-label text-center"
+    >
+      <i
+        style="font-size: 150px; cursor: pointer"
+        class="pi pi-cloud-upload"
+      ></i>
+    </label>
+    <div
+      class="d-flex flex-column"
+      style="text-align: center; align-items: center"
+    >
+      <img
+        *ngIf="file"
+        [src]="file.objectURL"
+        alt="Selected Image"
+        width="150"
+        height="150"
+        style="border-radius: 50%"
+      />
+      <button
+        *ngIf="file"
+        style="
+          border: none;
+          padding: 5px 10px;
+          width: 120px;
+          border-radius: 10px;
+          margin-top: 10px;
+        "
+        class="btn-danger"
+        (click)="removeFile()"
+      >
+        <i class="fas fa-trash"></i> Remove
+      </button>
+    </div>
+  </div>
+</div>

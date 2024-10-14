@@ -1,0 +1,87 @@
+<p-overlayPanel #op>
+  <h3>Filter for {{ column }}</h3>
+  <div
+    class="card"
+    style="width: 280px; background-color: #f8f9fa; border-radius: 10px"
+  >
+    <select
+      style="border-radius: 10px"
+      (change)="handleRuleApplyOptionChanges($event, 'ruleApply')"
+      class="form-select"
+      aria-label="Default select example"
+    >
+      <option [value]="option?.value" *ngFor="let option of ruleApplyOptions">
+        {{ option?.key }}
+      </option>
+    </select>
+    <div *ngFor="let rule of rules">
+      <select
+        style="margin-top: 10px; border-radius: 10px"
+        class="form-select"
+        aria-label="Default select example"
+        [(ngModel)]="rule.rule"
+        (change)="handleChange($event, 'rule', rule.index)"
+      >
+        <option [value]="option?.value" *ngFor="let option of ruleOptions">
+          {{ option?.key }}
+        </option>
+      </select>
+      <input
+        type="text"
+        class="form-control"
+        style="margin-top: 5px; border-radius: 10px"
+        placeholder=""
+        (change)="handleChange($event, 'key', rule.index)"
+      />
+
+      <p
+        *ngIf="rules.length > 1"
+        (click)="removeRule(rule.index)"
+        class="text-danger text-center"
+        style="
+          cursor: pointer;
+          padding: 5px;
+          border-radius: 10px;
+          background-color: transparent;
+          width: 100%;
+          margin-top: 8px;
+          border: none;
+          outline: none;
+        "
+        onmouseover="this.style.backgroundColor='#f5e3e3'"
+        onmouseout="this.style.backgroundColor='inherit'"
+      >
+        <i class="fa-solid fa-trash-can text-danger"></i>
+        Remove Rule
+      </p>
+    </div>
+
+    <button
+      *ngIf="rules.length < 2"
+      style="border: none; margin-top: 8px; background: transparent"
+      (click)="addRule()"
+      [disabled]="!isInputValid()"
+    >
+      <i class="fa fa-plus text-primary"></i>
+      Add Rule
+    </button>
+    <div style="margin-top: 20px">
+      <button
+        type="button"
+        class="btn btn-primary text-primary"
+        style="background-color: transparent; border-radius: 10px"
+        (click)="clearFilters()"
+      >
+        Clear
+      </button>
+      <button
+        (click)="onApply()"
+        type="button"
+        class="btn btn-primary"
+        style="float: right; border-radius: 10px"
+      >
+        Apply
+      </button>
+    </div>
+  </div>
+</p-overlayPanel>

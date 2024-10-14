@@ -1,0 +1,102 @@
+<div
+  class="flex align-items-center justify-content-between tableTitle"
+  style="margin-top: 15px"
+>
+  <p-table
+    #dt1
+    styleClass="p-datatable-striped"
+    [value]="listData.data"
+    [columns]="listData.cols"
+    [scrollable]="true"
+    [tableStyle]="{ 'min-width': '50rem', }"
+  >
+    <ng-template let-columns pTemplate="header">
+      <tr>
+        <ng-container *ngFor="let col of columns">
+          <th *ngIf="col.visible">
+            <div class="flex align-items-center">
+              {{ col.header }}
+              <i
+                *ngIf="col.filtering"
+                (click)="openOverlay($event, col.key)"
+                class="pi pi-filter"
+                style="
+                  cursor: pointer;
+                  margin-top: 0px;
+                  position: relative;
+                  top: 2px;
+                "
+              ></i>
+              <i
+                *ngIf="col.sorting"
+                [class]="col.sortIcon"
+                style="
+                  margin-left: 5px;
+                  cursor: pointer;
+                  margin-top: 0px;
+                  position: relative;
+                  top: 2px;
+                "
+              ></i>
+            </div>
+          </th>
+        </ng-container>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-index="rowIndex">
+      <tr>
+        <td>
+          {{ index + 1 }}
+        </td>
+        <ng-container *ngFor="let i of listData.cols">
+          <ng-container *ngIf="i.key !== 'id'">
+            <td *ngIf="i.visible && i.type === 'text'">
+              {{ item[i.key] }}
+            </td>
+            <td *ngIf="i.visible && i.type === 'tag'">
+              <p-tag
+                [severity]="item[i.key] === 'Active' ? 'success' : 'danger'"
+                [value]="item[i.key]"
+                [rounded]="true"
+              />
+            </td>
+            <td *ngIf="i.visible && i.type === 'action'">
+              <ng-container *ngFor="let action of i.actionOptions">
+                <button
+                  *ngIf="action.value !== 'Delete'"
+                  data-toggle="tooltip"
+                  [title]="action.value"
+                  style="
+                    margin-right: 5px;
+                    border: none;
+                    background-color: transparent;
+                  "
+                >
+                  <i [class]="action.icon"></i>
+                </button>
+                <button
+                  *ngIf="action.value === 'Delete'"
+                  data-toggle="tooltip"
+                  [title]="action.value"
+                  (onclick)="openConfirmDialoge('delete')"
+                  style="
+                    margin-right: 5px;
+                    border: none;
+                    background-color: transparent;
+                  "
+                >
+                  <i [class]="action.icon"></i>
+                </button>
+              </ng-container>
+            </td>
+          </ng-container>
+        </ng-container>
+      </tr>
+    </ng-template>
+    <app-confirm-dialoge></app-confirm-dialoge>
+  </p-table>
+  <app-overlay
+    [column]="selectedColumn"
+    (applyClicked)="handleApply($event)"
+  ></app-overlay>
+</div>

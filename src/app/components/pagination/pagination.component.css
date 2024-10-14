@@ -1,0 +1,17 @@
+.ui-state-default,
+.ui-widget-content .ui-state-default {
+  border-left: 5px solid green;
+}
+
+.ui-dropdown,
+.ng-valid,
+.ui-state-default,
+.ui-widget-content .ui-state-default {
+  border-left: 5px solid green;
+}
+:host ::ng-deep .paginator .p-dropdown-items {
+  padding: 0;
+}
+:host ::ng-deep .paginator {
+  float: right;
+}

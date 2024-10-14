@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms'; // For ngModel
-import { AuthSharedModule } from '../Auth.module';
-import { PasswordComponent } from '../../../../components/Common/password/password.component';
-import { FloatLabelModule } from 'primeng/floatlabel'; // Import the FloatLabelModule
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FloatLabelModule } from 'primeng/floatlabel';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { passwordMatchValidator } from '../../../Common/Validators';
 import { MessagesModule } from 'primeng/messages';
 import { ButtonModule } from 'primeng/button';
 import { Message } from 'primeng/api';
+import { PasswordComponent } from '../../../components/password/password.component';
+import { UiSharedModule } from '../../../Common/UIShared.module';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
     ButtonModule,
-    AuthSharedModule,
     FloatLabelModule,
     FontAwesomeModule,
     PasswordComponent,
+    UiSharedModule,
     MessagesModule,
   ],
   templateUrl: './register.component.html',

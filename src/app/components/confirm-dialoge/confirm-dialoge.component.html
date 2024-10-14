@@ -1,0 +1,104 @@
+<button
+  pButton
+  (click)="confirm()"
+  icon="pi pi-trash"
+  label="Delete Item"
+  class="p-button-danger"
+></button>
+
+<p-confirmDialog *ngIf="type === 'save'" #cd>
+  <ng-template pTemplate="headless" let-message>
+    <div
+      class="flex flex-column bg-light align-items-center text-center surface-overlay border-round"
+      style="border-radius: 10px; padding: 28px 35px"
+    >
+      <div
+        class="bg-primary inline-flex text-light text-center margin-auto"
+        style="
+          padding: 20px;
+          text-align: center;
+          width: auto;
+          display: inline-block;
+          border-radius: 50%;
+        "
+      >
+        <i class="pi pi-question text-5xl" style="font-size: 40px"></i>
+      </div>
+
+      <p
+        style="
+          display: block;
+          margin-top: 15px;
+          font-size: 23px;
+          font-weight: bold;
+          margin-bottom: -1px;
+        "
+      >
+        {{ message.header }}
+      </p>
+      <p>{{ message.message }}</p>
+      <div class="flex align-items-center gap-2 mt-4">
+        <button
+          pButton
+          label="Save"
+          (click)="cd.accept()"
+          class="btn btn-primary"
+        ></button>
+        <button
+          pButton
+          label="Cancel"
+          (click)="cd.reject()"
+          class="btn btn-primary bg-transparent text-primary"
+        ></button>
+      </div>
+    </div>
+  </ng-template>
+</p-confirmDialog>
+<p-confirmDialog *ngIf="type === 'delete'" #cd>
+  <ng-template pTemplate="headless" let-message>
+    <div
+      class="flex flex-column bg-light align-items-center text-center surface-overlay border-round"
+      style="border-radius: 10px; padding: 28px 35px"
+    >
+      <div
+        class="bg-danger inline-flex text-light text-center margin-auto"
+        style="
+          padding: 20px;
+          text-align: center;
+          width: auto;
+          display: inline-block;
+          border-radius: 50%;
+        "
+      >
+        <i class="pi pi-question text-5xl" style="font-size: 40px"></i>
+      </div>
+
+      <p
+        style="
+          display: block;
+          margin-top: 15px;
+          font-size: 23px;
+          font-weight: bold;
+          margin-bottom: -1px;
+        "
+      >
+        {{ message.header }}
+      </p>
+      <p>{{ message.message }}</p>
+      <div class="flex align-items-center gap-2 mt-4">
+        <button
+          pButton
+          label="Save"
+          (click)="cd.accept()"
+          class="btn btn-danger"
+        ></button>
+        <button
+          pButton
+          label="Cancel"
+          (click)="cd.reject()"
+          class="btn btn-danger bg-transparent text-danger"
+        ></button>
+      </div>
+    </div>
+  </ng-template>
+</p-confirmDialog>

@@ -1,0 +1,8 @@
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.mainContainer {
+  width: 100%;
+  margin: auto;
+}

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { AuthSharedModule } from '../Auth.module';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UiSharedModule } from '../../../Common/UIShared.module';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [AuthSharedModule],
+  imports: [UiSharedModule],
   templateUrl: './forgot-password.component.html',
   styleUrl: '../Auth.Component.css',
 })
@@ -14,5 +14,9 @@ export class ForgotPasswordComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  onSubmit() {}
+  onSubmit() {
+    if (this.forgotForm.invalid) {
+      this?.forgotForm?.markAllAsTouched();
+    }
+  }
 }

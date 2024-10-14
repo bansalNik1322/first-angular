@@ -1,0 +1,175 @@
+<app-layout>
+  <div style="padding: 20px 50px">
+    <h2 style="margin-bottom: 30px">Add User</h2>
+    <div class="row" style="justify-content: start">
+      <div>
+        <app-file-upload></app-file-upload>
+      </div>
+
+      <div class="col-sm-5">
+        <label for="">Name</label>
+        <p-inputGroup>
+          <p-inputGroupAddon
+            [ngStyle]="{
+              borderTopLeftRadius: '10px',
+              borderBottomLeftRadius: '10px',
+              backgroundColor: '#222E3C',
+              color: 'white'
+            }"
+          >
+            <i class="pi pi-id-card"></i>
+          </p-inputGroupAddon>
+          <input
+            pInputText
+            placeholder="Name"
+            [ngStyle]="{ 
+            borderTopRightRadius: '10px',
+            borderBottomRightRadius: '10px',
+        }"
+          />
+        </p-inputGroup>
+      </div>
+      <div class="col-sm-5">
+        <label for="">Username</label>
+        <p-inputGroup>
+          <p-inputGroupAddon
+            [ngStyle]="{
+              borderTopLeftRadius: '10px',
+              borderBottomLeftRadius: '10px',
+              backgroundColor: '#222E3C',
+              color: 'white'
+            }"
+          >
+            <i class="pi pi-user"></i>
+          </p-inputGroupAddon>
+          <input
+            pInputText
+            placeholder="Username"
+            [ngStyle]="{ 
+            borderTopRightRadius: '10px',
+            borderBottomRightRadius: '10px',
+        }"
+          />
+        </p-inputGroup>
+      </div>
+      <div class="col-sm-5">
+        <label for="">Email</label>
+        <p-inputGroup>
+          <p-inputGroupAddon
+            [ngStyle]="{
+              borderTopLeftRadius: '10px',
+              borderBottomLeftRadius: '10px',
+              backgroundColor: '#222E3C',
+              color: 'white'
+            }"
+          >
+            <i class="pi pi-envelope"></i>
+          </p-inputGroupAddon>
+          <input
+            pInputText
+            placeholder="Email"
+            [ngStyle]="{ 
+            borderTopRightRadius: '10px',
+            borderBottomRightRadius: '10px',
+        }"
+          />
+        </p-inputGroup>
+      </div>
+      <div class="col-sm-5">
+        <label for="">Phone</label>
+        <p-inputGroup>
+          <p-inputGroupAddon
+            [ngStyle]="{
+              borderTopLeftRadius: '10px',
+              borderBottomLeftRadius: '10px',
+              backgroundColor: '#222E3C',
+              color: 'white'
+            }"
+          >
+            <i class="pi pi-phone"></i>
+          </p-inputGroupAddon>
+          <input
+            pInputText
+            placeholder="Phone"
+            [ngStyle]="{ 
+            borderTopRightRadius: '10px',
+            borderBottomRightRadius: '10px',
+        }"
+          />
+        </p-inputGroup>
+      </div>
+
+      <div class="col-sm-5">
+        <label for="">Date Of Birth</label>
+        <p-inputGroup>
+          <p-inputGroupAddon
+            [ngStyle]="{
+              borderTopLeftRadius: '10px',
+              borderBottomLeftRadius: '10px',
+              backgroundColor: '#222E3C',
+              color: 'white'
+            }"
+          >
+            <i class="pi pi-calendar"></i>
+          </p-inputGroupAddon>
+          <p-calendar
+            class="calendarInput"
+            placeholder="Date of Birth"
+            [style]="{
+              width: '100%',
+              borderTopRightRadius: '10px',
+              borderBottomRightRadius: '10px'
+            }"
+          />
+        </p-inputGroup>
+      </div>
+
+      <div class="col-sm-5">
+        <label for="">Gender</label>
+        <p-inputGroup>
+          <p-inputGroupAddon
+            [ngStyle]="{
+              borderTopLeftRadius: '10px',
+              borderBottomLeftRadius: '10px',
+              backgroundColor: '#222E3C',
+              color: 'white'
+            }"
+          >
+            <i class="fa fa-genderless text-light" style="font-size: 19px"></i>
+          </p-inputGroupAddon>
+          <select
+            style="
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+            "
+            class="form-select"
+            aria-label="Default select example"
+          >
+            <ng-container *ngFor="let col of genderOptions">
+              <option [value]="col.toLowerCase()">
+                {{ col }}
+              </option>
+            </ng-container>
+          </select>
+        </p-inputGroup>
+      </div>
+
+      <div style="margin-top: 20px; text-align: right" class="col-sm-10">
+        <button
+          data-toggle="tooltip"
+          title="Reset Form Data."
+          class="btn btn-danger p-2"
+          style="margin-right: 10px"
+        >
+          <i style="position: relative; top: 2px" class="pi pi-refresh"></i>
+          Reset
+        </button>
+
+        <button type="button" class="btn btn-primary p-2">
+          <i style="position: relative; top: 2px" class="pi pi-plus"></i>
+          &nbsp;Create User
+        </button>
+      </div>
+    </div>
+  </div>
+</app-layout>

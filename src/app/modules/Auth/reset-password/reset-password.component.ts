@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthSharedModule } from '../Auth.module';
-import { PasswordComponent } from '../../../../components/Common/password/password.component';
 import { passwordMatchValidator } from '../../../Common/Validators';
+import { UiSharedModule } from '../../../Common/UIShared.module';
+import { PasswordComponent } from '../../../components/password/password.component';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [AuthSharedModule, PasswordComponent],
+  imports: [UiSharedModule, PasswordComponent],
   templateUrl: './reset-password.component.html',
   styleUrl: '../Auth.Component.css',
 })
 export class ResetPasswordComponent {
-  password: string = '';
-  confirmPassword: string = '';
+  password = '';
+  confirmPassword = '';
   resetForm: FormGroup = new FormGroup(
     {
       otp: new FormControl('', [

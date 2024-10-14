@@ -1,0 +1,19 @@
+label {
+  font-size: 16px;
+  margin-bottom: -7px;
+  margin-top: 10px;
+}
+:host ::ng-deep .calanderInput {
+  width: 100%; /* Ensures the input group takes full width */
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.calendarInput {
+  width: 100%; /* Ensures the calendar input takes full width */
+}
+/* 
+:host ::ng-deep p-password .p-inputtext {
+  height: 32px;
+  width: 100%;
+} */
