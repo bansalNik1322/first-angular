@@ -34,7 +34,7 @@
         (change)="handleChange($event, 'key', rule.index)"
       />
 
-      <p
+      <button
         *ngIf="rules.length > 1"
         (click)="removeRule(rule.index)"
         class="text-danger text-center"
@@ -53,7 +53,8 @@
       >
         <i class="fa-solid fa-trash-can text-danger"></i>
         Remove Rule
-      </p>
+    </button>
+
     </div>
 
     <button

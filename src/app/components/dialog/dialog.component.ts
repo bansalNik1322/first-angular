@@ -10,7 +10,6 @@ import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { UiSharedModule } from '../../Common/UIShared.module';
 import { Column } from '../../Common/interfaces/global.interface';
-import { Event } from '@angular/router';
 @Component({
   selector: 'app-dialog',
   standalone: true,
@@ -19,7 +18,7 @@ import { Event } from '@angular/router';
   styleUrl: './dialog.component.css',
 })
 export class DialogComponent implements OnChanges {
-  @Input() visible: boolean = false;
+  @Input() visible = false;
   @Input() sortAndPaginationConfig: any;
   @Output() visibleChange = new EventEmitter();
   @Output() dataChanged = new EventEmitter();

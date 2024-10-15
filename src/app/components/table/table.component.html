@@ -16,17 +16,19 @@
           <th *ngIf="col.visible">
             <div class="flex align-items-center">
               {{ col.header }}
-              <i
+              <button
                 *ngIf="col.filtering"
                 (click)="openOverlay($event, col.key)"
-                class="pi pi-filter"
+                class="bg-transparent text-light border-0"
                 style="
                   cursor: pointer;
                   margin-top: 0px;
                   position: relative;
                   top: 2px;
                 "
-              ></i>
+              >
+                <i class="pi pi-filter"></i>
+              </button>
               <i
                 *ngIf="col.sorting"
                 [class]="col.sortIcon"
@@ -45,10 +47,10 @@
     </ng-template>
     <ng-template pTemplate="body" let-item let-index="rowIndex">
       <tr>
-        <td>
-          {{ index + 1 }}
-        </td>
         <ng-container *ngFor="let i of listData.cols">
+          <td *ngIf="i.key === 'id' && i.visible">
+            {{ "10" }}
+          </td>
           <ng-container *ngIf="i.key !== 'id'">
             <td *ngIf="i.visible && i.type === 'text'">
               {{ item[i.key] }}
@@ -96,8 +98,8 @@
     </ng-template>
   </p-table>
   <app-overlay
-  [column]="selectedColumn"
-  (applyClicked)="handleApply($event)"
+    [column]="selectedColumn"
+    (applyClicked)="handleApply($event)"
   ></app-overlay>
   <app-confirm-dialoge></app-confirm-dialoge>
 </div>

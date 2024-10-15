@@ -12,13 +12,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './password.component.css',
 })
 export class PasswordComponent {
-  passwordVisible: boolean = false;
+  passwordVisible = false;
   // Icons
   faEye = faEye;
   faEyeSlash = faEyeSlash;
 
-  @Input() passwordOrConfirm: boolean = false;
-  @Input() passwordValue: string = '';
+  @Input() passwordOrConfirm = false;
+  @Input() passwordValue = '';
   @Output() passwordValueChange = new EventEmitter<string>();
 
   togglePasswordVisibility() {

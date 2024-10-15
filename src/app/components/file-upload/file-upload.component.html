@@ -29,16 +29,29 @@
       #fileInput
     />
 
-    <label
+    <!-- <label
       (click)="fileInput.click()"
-      *ngIf="!file"
       class="choose-file-label text-center"
+      >
+      <i
+      style="font-size: 150px; cursor: pointer"
+      class="pi pi-cloud-upload"
+      ></i>
+    </label> -->
+    <button
+      type="button"
+      *ngIf="!file"
+      (click)="fileInput.click()"
+      class="choose-file-button border-0 bg-transparent text-center"
+      aria-label="Upload File"
+      style="font-size: 20px;"
     >
       <i
-        style="font-size: 150px; cursor: pointer"
-        class="pi pi-cloud-upload"
+        style="font-size: 150px; cursor: pointer; "
+        class="pi pi-cloud-upload d-block"
       ></i>
-    </label>
+      Upload File
+    </button>
     <div
       class="d-flex flex-column"
       style="text-align: center; align-items: center"
