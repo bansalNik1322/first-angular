@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { authRoutes } from './modules/Auth/auth.routes';
 import { dashboardRoutes } from './modules/Dashboard/Dashboard.route';
 import { ConfirmDialogeComponent } from './components/confirm-dialoge/confirm-dialoge.component';
+import { ToastsContainer } from './components/toast/Toast.container.component';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,6 @@ export const routes: Routes = [
   },
   {
     path: 'loader',
-    component: ConfirmDialogeComponent,
+    component: ToastsContainer,
   },
 ];

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { PaginatorModule } from 'primeng/paginator';
 @Component({
   selector: 'app-pagination',
@@ -10,11 +10,19 @@ import { PaginatorModule } from 'primeng/paginator';
 })
 export class PaginationComponent {
   first: number = 10;
+  @Output() paginationChanges = new EventEmitter();
 
-  rows: number = 10;
+  rows: number = 50;
 
   onPageChange(event: any) {
+    console.log('🚀 ~ PaginationComponent ~ onPageChange ~ event:', event);
     this.first = event.first;
     this.rows = event.rows;
+
+    this.paginationChanges.emit({
+      offset: event.first,
+      pageLength: event.rows,
+      currentPage: event.page,
+    });
   }
 }

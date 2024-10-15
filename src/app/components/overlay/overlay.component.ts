@@ -69,8 +69,9 @@ export class OverlayComponent implements OnInit {
 
   onApply() {
     this.applyClicked.emit({
-      rules: this.rules,
-      ruleType: this.selectedRuleApply,
+      list: this.rules,
+      key: this.column,
+      type: this.selectedRuleApply,
     });
     if (this.overlayPanel) {
       this.overlayPanel.hide();

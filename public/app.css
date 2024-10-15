@@ -12334,3 +12334,7 @@ span.flatpickr-weekday {
 .sidebar.active {
   display: block; /* or flex, depending on your layout */
 }
+
+.pi{
+  font-size: 0.8rem !important;
+}

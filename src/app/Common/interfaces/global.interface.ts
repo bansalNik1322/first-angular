@@ -24,10 +24,13 @@ export interface SortAndPaginationConfig {
   sortKey?: string;
   sortOrder?: 'ASC' | 'DESC';
   searchKey?: string;
+  totalRecords?: number;
+  offset?: number;
 }
 
 export interface DataRules {
   ruleType: 'one' | 'all';
+  rulekey: string;
   rules: Rule[];
 }
 

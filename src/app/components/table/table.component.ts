@@ -17,6 +17,7 @@ import { ConfirmationDialogService } from '../../service/confirm-dialoge.service
 import { ConfirmationService } from 'primeng/api';
 import { ToastsContainer } from '../toast/Toast.container.component';
 import { ToastService } from '../../service/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -31,7 +32,12 @@ import { ToastService } from '../../service/toast.service';
     ConfirmDialogeComponent,
     ToastsContainer,
   ],
-  providers: [ConfirmationDialogService, ConfirmationService, ToastService],
+  providers: [
+    ConfirmationDialogService,
+    ConfirmationService,
+    ToastService,
+    Router,
+  ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css',
 })
@@ -44,14 +50,21 @@ export class TableComponent {
   columnFilterDialogeVisible: boolean = false;
   selectedColumn: any;
 
-  constructor(private confirmationDialogService: ConfirmationDialogService) {}
+  constructor(
+    private confirmationDialogService: ConfirmationDialogService,
+    private router: Router
+  ) {}
 
   openOverlay(event: MouseEvent, column: string) {
     this.selectedColumn = column;
     this.childComponent.showOverlay(event);
   }
+
   handleApply(selectedValues: any) {
-    this.handleRulesChange.emit(selectedValues);
+    this.handleRulesChange.emit({
+      rules: selectedValues,
+      config: this.listData.sortAndPaginationConfig,
+    });
   }
   openColumnFilterDialoge() {
     this.columnFilterDialogeVisible = !this.columnFilterDialogeVisible;
@@ -63,6 +76,31 @@ export class TableComponent {
     data: [],
     sortAndPaginationConfig: {},
   };
+
+  hanleSortChange(column: string) {
+    console.log('key');
+    const col = this.listData.cols.find((i) => i.key === column);
+    console.log('🚀 ~ TableComponent ~ hanleSortChange ~ col:', col);
+    this.listData.sortAndPaginationConfig = {
+      ...this.listData.sortAndPaginationConfig,
+      sortOrder: col?.sortIcon === 'pi pi-sort-amount-up' ? 'DESC' : 'ASC',
+      sortKey: col?.key,
+    };
+
+    this.listData.cols.forEach((i) => {
+      i.sortIcon =
+        i.key === this.listData.sortAndPaginationConfig.sortKey
+          ? this.listData.sortAndPaginationConfig.sortOrder === 'ASC'
+            ? 'pi pi-sort-amount-up'
+            : 'pi pi-sort-amount-down'
+          : 'pi pi-sort-alt';
+    });
+  }
+
+  editRecord(recordId: string | number) {
+    console.log('🚀 ~ TableComponent ~ editRecord ~ number:', recordId);
+    this.router.navigate(['/dashboard/user/add']);
+  }
 
   openConfirmDialoge(dialogType: string) {
     console.log('Here ');

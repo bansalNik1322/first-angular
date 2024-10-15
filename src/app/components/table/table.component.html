@@ -29,9 +29,10 @@
               >
                 <i class="pi pi-filter"></i>
               </button>
-              <i
+              <button
                 *ngIf="col.sorting"
-                [class]="col.sortIcon"
+                class="bg-transparent text-light border-0"
+                (click)="hanleSortChange(col.key)"
                 style="
                   margin-left: 5px;
                   cursor: pointer;
@@ -39,7 +40,9 @@
                   position: relative;
                   top: 2px;
                 "
-              ></i>
+              >
+                <i [class]="col.sortIcon"></i>
+              </button>
             </div>
           </th>
         </ng-container>
@@ -65,10 +68,9 @@
             <td *ngIf="i.visible && i.type === 'action'">
               <ng-container *ngFor="let action of i.actionOptions">
                 <button
-                  *ngIf="action.value !== 'Delete'"
+                  *ngIf="action.value !== 'Delete' && action.value !== 'Edit'"
                   data-toggle="tooltip"
                   [title]="action.value"
-                  (click)="openConfirmDialoge('save')"
                   style="
                     margin-right: 5px;
                     border: none;
@@ -77,6 +79,22 @@
                 >
                   <i [class]="action.icon"></i>
                 </button>
+                
+                <button
+                  *ngIf="action.value === 'Edit'"
+                  data-toggle="tooltip"
+                  [title]="action.value"
+                  style="
+                    margin-right: 5px;
+                    border: none;
+                    background-color: transparent;
+                  "
+                  (click)="editRecord(item.id)"
+                >
+                  <i [class]="action.icon"></i>
+                </button>
+
+
                 <button
                   *ngIf="action.value === 'Delete'"
                   data-toggle="tooltip"

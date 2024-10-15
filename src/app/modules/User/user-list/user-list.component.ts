@@ -26,7 +26,7 @@ import { ConfirmationDialogService } from '../../../service/confirm-dialoge.serv
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css',
 })
-export class UserListComponent {
+export class UserListComponent implements OnInit {
   userListData: ListData = {
     title: 'Users',
     cols: [],
@@ -41,14 +41,28 @@ export class UserListComponent {
     this.initializeUserData();
   }
 
+  ngOnInit() {
+    this.userService.userListData$.subscribe((data) => {
+      this.userListData = { ...data };
+      this.cols = JSON.parse(JSON.stringify(data.cols));
+      this.sortAndPaginationConfig = { ...data.sortAndPaginationConfig };
+    });
+  }
+
   private initializeUserData() {
-    this.userListData.cols = this.userService.getUserColumns();
     const { config, users } = this.userService.getUsers();
-    this.userListData.sortAndPaginationConfig = config;
-    this.userListData.data = users;
+
+    this.userListData = {
+      title: 'Users',
+      cols: JSON.parse(JSON.stringify(this.userService.getUserColumns())),
+      data: users,
+      sortAndPaginationConfig: JSON.parse(JSON.stringify(config)),
+    };
 
     this.cols = JSON.parse(JSON.stringify(this.userListData.cols));
-    this.sortAndPaginationConfig = this.userListData.sortAndPaginationConfig;
+    this.sortAndPaginationConfig = JSON.parse(
+      JSON.stringify(this.userListData.sortAndPaginationConfig)
+    );
   }
 
   // Column Filter Dialoge Box Functions
@@ -65,29 +79,77 @@ export class UserListComponent {
         (i as any)[type] = event.target.checked;
       }
     });
-    console.log(
-      '🚀 ~ UserListComponent ~ this.cols.forEach ~  this.cols:',
-      this.cols === this.userListData.cols
-    );
   }
 
-  public hanldleSortChange(event: any, type: 'Order' | 'Key'): void {
-    this.sortAndPaginationConfig[`sort${type}`] = event.target.value;
+  public hanldleSortChange(column?: string): void {
+    if (column) {
+      const col = this.userListData.cols.find((i) => i.key === i.key);
+      this.userListData.sortAndPaginationConfig = {
+        ...this.userListData.sortAndPaginationConfig,
+        sortOrder: col?.sortIcon === 'pi pi-sort-amount-up' ? 'DESC' : 'ASC',
+        sortKey: col?.key,
+      };
+
+      this.userListData.cols.forEach((i) => {
+        i.sortIcon =
+          i.key === this.userListData.sortAndPaginationConfig.sortKey
+            ? this.userListData.sortAndPaginationConfig.sortOrder === 'ASC'
+              ? 'pi pi-sort-amount-up'
+              : 'pi pi-sort-amount-down'
+            : 'pi pi-sort-alt';
+      });
+
+      this.userService.updateUserListData(this.userListData);
+    } else {
+      this.cols.forEach((i) => {
+        if (i.key === this.sortAndPaginationConfig.sortKey) {
+          console.log(i.key);
+          i.sortIcon =
+            this.sortAndPaginationConfig.sortOrder === 'ASC'
+              ? 'pi pi-sort-amount-up'
+              : 'pi pi-sort-amount-down';
+        } else {
+          i.sortIcon = 'pi pi-sort-alt';
+        }
+      });
+    }
+    console.log(this.userListData, this.cols, this.sortAndPaginationConfig);
   }
+
   public dialogeVisibilityChanges(visibleChanges: any) {
     this.columnFilterDialogeVisible = visibleChanges.visible;
 
     if (visibleChanges.changes) {
+      this.userListData.sortAndPaginationConfig.sortKey =
+        this.sortAndPaginationConfig.sortKey;
+      this.userListData.sortAndPaginationConfig.sortOrder =
+        this.sortAndPaginationConfig.sortOrder;
       this.userListData.sortAndPaginationConfig = this.sortAndPaginationConfig;
       this.userListData.cols = JSON.parse(JSON.stringify(this.cols));
     }
   }
 
-  public sortAndPaginationConfigChange(config: any): void {
-    this.userListData.sortAndPaginationConfig = config;
+  handleRuleChange(data: any) {
+    this.userListData.dataRules = {
+      rules: data?.rules?.list,
+      rulekey: data?.rules?.key,
+      ruleType: data?.rules?.type,
+    };
+    this.userListData.sortAndPaginationConfig = data?.config;
+
+    console.log(this.userListData, 'fjewrljg');
   }
 
-  handleRuleChange(rules: any) {
-    console.log('🚀 ~ UserListComponent ~ handleRuleChange ~ rules:', rules);
+  handlePagination(paginationData: any) {
+    this.userService.updateUserListData({
+      ...this.userListData,
+      sortAndPaginationConfig: {
+        ...this.userListData.sortAndPaginationConfig,
+        offset: paginationData?.offset ?? 0,
+        pageLength: paginationData?.pageLength ?? 10,
+        currentPage: paginationData?.currentPage ?? 1,
+      },
+    });
+    console.log(this.userListData, this.sortAndPaginationConfig);
   }
 }

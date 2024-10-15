@@ -1,11 +1,32 @@
 import { Injectable } from '@angular/core';
 import {
   Column,
+  ListData,
   SortAndPaginationConfig,
 } from '../Common/interfaces/global.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class UserService {
+  private userListDataSubject = new BehaviorSubject<ListData>(
+    this.getInitialUserData()
+  );
+
+  private getInitialUserData(): ListData {
+    const { config, users } = this.getUsers();
+    return {
+      title: 'Users',
+      cols: this.getUserColumns(),
+      data: users,
+      sortAndPaginationConfig: config,
+    };
+  }
+
+  updateUserListData(data: ListData): void {
+    this.userListDataSubject.next(data);
+  }
+
+  userListData$ = this.userListDataSubject.asObservable();
   public getUserColumns() {
     const userColumns: Column[] = [
       {
@@ -192,6 +213,7 @@ export class UserService {
       pageLength: 10,
       sortKey: 'id',
       sortOrder: 'ASC',
+      totalRecords: 50,
       searchKey: '',
     };
 
