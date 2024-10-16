@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { LayoutComponent } from '../../../components/layout/layout.component';
-import { UiSharedModule } from '../../../Common/UIShared.module';
-import { FloatLabelModule } from 'primeng/floatlabel';
+import { UiSharedModule } from '../../../Shared/modules/UIShared.module';
 import { FileUploadComponent } from '../../../components/file-upload/file-upload.component';
 
 @Component({
@@ -12,6 +11,8 @@ import { FileUploadComponent } from '../../../components/file-upload/file-upload
   styleUrl: './add-edit-user.component.css',
 })
 export class AddEditUserComponent {
+  @Input() edit: boolean = false;
+
   selectedCity = '';
 
   genderOptions = ['Male', 'Female'];

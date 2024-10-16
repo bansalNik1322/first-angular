@@ -6,6 +6,7 @@ import {
   AlignLeft,
   BarChart2,
   Bell,
+  Edit,
   Book,
   CheckSquare,
   HelpCircle,
@@ -21,6 +22,7 @@ import {
   Users,
   Plus,
   List,
+  LogOut,
 } from 'angular-feather/icons';
 
 const icons = {
@@ -43,6 +45,8 @@ const icons = {
   List,
   HelpCircle,
   RefreshCcw,
+  LogOut,
+  Edit,
 };
 
 @NgModule({ imports: [FeatherModule.pick(icons)], exports: [FeatherModule] })

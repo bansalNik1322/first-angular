@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UiSharedModule } from '../../../Common/UIShared.module';
+import { UiSharedModule } from '../../../Shared/modules/UIShared.module';
 
 @Component({
   selector: 'app-forgot-password',

@@ -89,7 +89,7 @@
                     border: none;
                     background-color: transparent;
                   "
-                  (click)="editRecord(item.id)"
+                  (click)="editRecord(item.id ?? 0)"
                 >
                   <i [class]="action.icon"></i>
                 </button>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SortAndPaginationConfig } from '../Common/interfaces/global.interface';
+import { SortAndPaginationConfig } from '../../Common/interfaces/global.interface';
 
 @Injectable({
   providedIn: 'root',

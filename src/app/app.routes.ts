@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { authRoutes } from './modules/Auth/auth.routes';
 import { dashboardRoutes } from './modules/Dashboard/Dashboard.route';
-import { ConfirmDialogeComponent } from './components/confirm-dialoge/confirm-dialoge.component';
 import { ToastsContainer } from './components/toast/Toast.container.component';
+import { authRoutes } from './modules/Auth/auth.routes';
+import { ColumnFilterDilogeComponent } from './components/column-filter-diloge/column-filter-diloge.component';
 
 export const routes: Routes = [
   {
@@ -14,7 +14,7 @@ export const routes: Routes = [
     children: dashboardRoutes,
   },
   {
-    path: 'loader',
-    component: ToastsContainer,
+    path: '',
+    component: ColumnFilterDilogeComponent,
   },
 ];

@@ -16,7 +16,7 @@ import { ChipsModule } from 'primeng/chips';
 import { CommonModule } from '@angular/common';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
-import { DataTableFilterService } from '../../service/data-table-filter.service';
+import { DataTableFilterService } from '../../Shared/service/data-table-filter.service';
 
 interface Rule {
   index: number;

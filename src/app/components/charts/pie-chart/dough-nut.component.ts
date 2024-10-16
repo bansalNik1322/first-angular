@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 
@@ -5,7 +6,7 @@ import { ChartModule } from 'primeng/chart';
   selector: 'app-doughnut',
   templateUrl: './dough-nut.component.html',
   standalone: true,
-  imports: [ChartModule],
+  imports: [ChartModule, CommonModule],
 })
 export class DoughNutComponent implements OnInit {
   data: any;

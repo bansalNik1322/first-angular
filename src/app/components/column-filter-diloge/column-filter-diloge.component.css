@@ -1,0 +1,22 @@
+:host ::ng-deep .p-multiselect {
+  width: 97%;
+  border-radius: 10px;
+  margin: axuto;
+  margin-top: 20px;
+  margin-left: 2%;
+}
+
+.p-dialog {
+  min-height: 700px;
+}
+:host ::ng-deep .p-tabview {
+    margin-top: 20px !important;
+}
+
+
+:host ::ng-deep .p-tabview .p-tabview-nav-link{
+    color: black;
+}
+:host ::ng-deep .p-tabview .p-tabview-nav-link:hover{
+    text-decoration: none;
+}

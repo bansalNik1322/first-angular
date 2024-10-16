@@ -8,13 +8,15 @@
   >
     <div class="sidebar-content js-simplebar">
       <a class="sidebar-brand" href="index.html">
-        <span class="align-middle">AdminKit</span>
+        <span class="align-middle">S-M Admin</span>
       </a>
 
       <ul class="sidebar-nav">
-        <li class="sidebar-header">Pages</li>
+        <li class="sidebar-header">Preferences</li>
 
-        <li class="sidebar-item active">
+        <li
+          [ngClass]="{ 'sidebar-item': true, active: isActive('/dashboard') }"
+        >
           <a class="sidebar-link" href="index.html">
             <i-feather class="feather-icon" name="sliders"></i-feather>
             <span class="align-middle">Dashboard</span>
@@ -27,18 +29,34 @@
             href="#"
             data-bs-toggle="collapse"
             data-bs-target="#dashboardDropdown"
+            aria-expanded="true"
           >
             <i-feather class="feather-icon" name="users"></i-feather>
             <span class="align-middle">Users</span>
           </a>
-          <ul class="collapse" id="dashboardDropdown" style="list-style: none">
-            <li class="sidebar-item">
+          <ul
+            [ngClass]="{ collapse: true, show: dropdownStates['users'] }"
+            id="dashboardDropdown"
+            style="list-style: none"
+          >
+            <li
+              [ngClass]="{
+                'sidebar-item': true,
+                active: isActive('/dashboard/user')
+              }"
+            >
               <a class="sidebar-link" href="/dashboard/user">
                 <i-feather class="feather-icon" name="list"></i-feather>
                 <span class="align-middle">All Users</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            <li
+              class="sidebar-item"
+              [ngClass]="{
+                'sidebar-item': true,
+                active: isActive('/dashboard/user/add')
+              }"
+            >
               <a class="sidebar-link" href="/dashboard/user/add">
                 <i-feather class="feather-icon" name="user-plus"></i-feather>
                 <span class="align-middle">Add-User</span>
@@ -47,72 +65,56 @@
           </ul>
         </li>
 
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="pages-profile.html">
-            <i-feather class="feather-icon" name="user"></i-feather>
-            <span class="align-middle">Profile</span>
+        <li class="sidebar-header">Account</li>
+
+        <li class="sidebar-item dropdown">
+          <a
+            class="sidebar-link"
+            href="/#"
+            data-bs-target="#setttingsdropdown"
+            data-bs-toggle="collapse"
+            aria-expanded="true"
+          >
+            <i-feather class="feather-icon" name="settings"></i-feather>
+            <span class="align-middle">Settings</span>
           </a>
+          <ul
+            [ngClass]="{ collapse: true, show: dropdownStates['settings'] }"
+            id="setttingsdropdown"
+            style="list-style: none"
+          >
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/dashboard/user">
+                <i-feather class="feather-icon" name="Edit"></i-feather>
+                <span class="align-middle">Edit Profile</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/dashboard/user/add">
+                <i-feather class="feather-icon" name="user"></i-feather>
+                <span class="align-middle">View Profile</span>
+              </a>
+            </li>
+          </ul>
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link" href="pages-sign-in.html">
-            <i-feather class="feather-icon" name="user"></i-feather>
-            <span class="align-middle">Sign In</span>
+          <a class="sidebar-link" href="/dashboard">
+            <i-feather class="feather-icon" name="log-out"></i-feather>
+            <span class="align-middle">Logout</span>
           </a>
         </li>
-
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="pages-sign-up.html">
-            <i-feather class="feather-icon" name="user-plus"></i-feather>
-            <span class="align-middle">Sign Up</span>
-          </a>
-        </li>
-
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="pages-blank.html">
-            <i-feather class="feather-icon" name="book"></i-feather>
-            <span class="align-middle">Blank</span>
-          </a>
-        </li>
-
-        <li class="sidebar-header">Tools & Components</li>
-
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="ui-buttons.html">
-            <i-feather class="feather-icon" name="square"></i-feather>
-            <span class="align-middle">Buttons</span>
-          </a>
-        </li>
-
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="ui-forms.html">
-            <i-feather class="feather-icon" name="check-square"></i-feather>
-            <span class="align-middle">Forms</span>
-          </a>
-        </li>
-
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="ui-typography.html">
-            <i-feather class="feather-icon" name="align-left"></i-feather>
-            <span class="align-middle">Typography</span>
-          </a>
-        </li>
-
-        <li class="sidebar-header">Plugins & Addons</li>
-
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="charts-chartjs.html">
-            <i-feather class="feather-icon" name="bar-chart-2"></i-feather>
-            <span class="align-middle">Charts</span>
-          </a>
-        </li>
+ 
       </ul>
     </div>
   </nav>
 
   <div class="main">
     <nav class="navbar navbar-expand navbar-light navbar-bg">
-      <button class="sidebar-toggle border-0 bg-transparent js-sidebar-toggle" (click)="toggleSidebar()">
+      <button
+        class="sidebar-toggle border-0 bg-transparent js-sidebar-toggle"
+        (click)="toggleSidebar()"
+      >
         <i class="hamburger align-self-center"></i>
       </button>
 

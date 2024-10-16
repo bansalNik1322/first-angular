@@ -20,9 +20,12 @@ import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   exports: [
+    MultiSelectModule,
     FileUploadModule,
     InputGroupAddonModule,
     InputGroupModule,
@@ -34,6 +37,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     FontAwesomeModule,
     CommonModule,
     CommonModule,
+    TabViewModule,
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
@@ -66,6 +70,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     FileUploadModule,
     PasswordModule,
     CheckboxModule,
+    TabViewModule,
     MatIconModule,
     CardModule,
     IconsModule,
@@ -73,6 +78,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     ConfirmPopupModule,
     ConfirmDialogModule,
     ToastModule,
+    MultiSelectModule,
   ],
 })
 export class UiSharedModule {}

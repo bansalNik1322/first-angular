@@ -8,15 +8,15 @@ import {
 import { CommonModule } from '@angular/common';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { OverlayComponent } from '../overlay/overlay.component';
-import { IconsModule } from '../../Common/Icon.module';
-import { UiSharedModule } from '../../Common/UIShared.module';
+import { IconsModule } from '../../Shared/modules/Icon.module';
+import { UiSharedModule } from '../../Shared/modules/UIShared.module';
 import { DialogComponent } from '../dialog/dialog.component';
 import { ListData } from '../../Common/interfaces/global.interface';
 import { ConfirmDialogeComponent } from '../confirm-dialoge/confirm-dialoge.component';
-import { ConfirmationDialogService } from '../../service/confirm-dialoge.service';
+import { ConfirmationDialogService } from '../../Shared/service/confirm-dialoge.service';
 import { ConfirmationService } from 'primeng/api';
 import { ToastsContainer } from '../toast/Toast.container.component';
-import { ToastService } from '../../service/toast.service';
+import { ToastService } from '../../Shared/service/toast.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -61,6 +61,10 @@ export class TableComponent {
   }
 
   handleApply(selectedValues: any) {
+    console.log(
+      '🚀 ~ TableComponent ~ handleApply ~ selectedValues:',
+      selectedValues
+    );
     this.handleRulesChange.emit({
       rules: selectedValues,
       config: this.listData.sortAndPaginationConfig,
@@ -99,7 +103,7 @@ export class TableComponent {
 
   editRecord(recordId: string | number) {
     console.log('🚀 ~ TableComponent ~ editRecord ~ number:', recordId);
-    this.router.navigate(['/dashboard/user/add']);
+    this.router.navigate([`/dashboard/user/edit/${recordId}`]);
   }
 
   openConfirmDialoge(dialogType: string) {

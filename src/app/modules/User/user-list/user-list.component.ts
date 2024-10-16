@@ -1,26 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { LayoutComponent } from '../../../components/layout/layout.component';
 import { TableComponent } from '../../../components/table/table.component';
-import { UserService } from '../../../service/user.service';
+import { UserService } from '../../../Shared/service/user.service';
 import {
   Column,
   ListData,
   SortAndPaginationConfig,
 } from '../../../Common/interfaces/global.interface';
-import { UiSharedModule } from '../../../Common/UIShared.module';
+import { UiSharedModule } from '../../../Shared/modules/UIShared.module';
 import { DialogComponent } from '../../../components/dialog/dialog.component';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
-import { ConfirmationDialogService } from '../../../service/confirm-dialoge.service';
+import { ConfirmationDialogService } from '../../../Shared/service/confirm-dialoge.service';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { ColumnFilterDilogeComponent } from '../../../components/column-filter-diloge/column-filter-diloge.component';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
   imports: [
+    CommonModule,
+    RouterOutlet,
     LayoutComponent,
     TableComponent,
     UiSharedModule,
     DialogComponent,
     PaginationComponent,
+    ColumnFilterDilogeComponent,
   ],
   providers: [UserService, ConfirmationDialogService],
   templateUrl: './user-list.component.html',

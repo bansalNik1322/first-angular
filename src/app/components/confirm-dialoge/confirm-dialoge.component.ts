@@ -1,8 +1,8 @@
 import { Component, inject, Input } from '@angular/core';
-import { UiSharedModule } from '../../Common/UIShared.module';
+import { UiSharedModule } from '../../Shared/modules/UIShared.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { ConfirmationDialogService } from '../../service/confirm-dialoge.service';
-import { ToastService } from '../../service/toast.service';
+import { ConfirmationDialogService } from '../../Shared/service/confirm-dialoge.service';
+import { ToastService } from '../../Shared/service/toast.service';
 import { ToastsContainer } from '../toast/Toast.container.component';
 
 @Component({

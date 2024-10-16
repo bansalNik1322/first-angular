@@ -2,7 +2,7 @@ import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-import { ToastService } from '../../service/toast.service';
+import { ToastService } from '../../Shared/service/toast.service';
 
 @Component({
   selector: 'app-toasts',

@@ -8,7 +8,7 @@ import { MessagesModule } from 'primeng/messages';
 import { ButtonModule } from 'primeng/button';
 import { Message } from 'primeng/api';
 import { PasswordComponent } from '../../../components/password/password.component';
-import { UiSharedModule } from '../../../Common/UIShared.module';
+import { UiSharedModule } from '../../../Shared/modules/UIShared.module';
 
 @Component({
   selector: 'app-register',

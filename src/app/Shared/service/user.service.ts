@@ -3,7 +3,7 @@ import {
   Column,
   ListData,
   SortAndPaginationConfig,
-} from '../Common/interfaces/global.interface';
+} from '../../Common/interfaces/global.interface';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable()

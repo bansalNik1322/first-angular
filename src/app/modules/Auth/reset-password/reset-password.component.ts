@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { passwordMatchValidator } from '../../../Common/Validators';
-import { UiSharedModule } from '../../../Common/UIShared.module';
+import { UiSharedModule } from '../../../Shared/modules/UIShared.module';
 import { PasswordComponent } from '../../../components/password/password.component';
 
 @Component({

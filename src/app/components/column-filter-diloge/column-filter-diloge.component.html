@@ -1,0 +1,154 @@
+<p-dialog
+  [modal]="true"
+  [(visible)]="visible"
+  [closeOnEscape]="true"
+  (onHide)="handleDialogHide(false)"
+  [dismissableMask]="true"
+  closable="false"
+  [style]="{ width: '40rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+  <!-- <ng-template pTemplate="header"> </ng-template>
+  <ng-content></ng-content> -->
+  <div>
+    <div
+      class="d-flex justify-content-between align-items-center"
+      style="padding: 0 10px"
+    >
+      <h3 class="d-inline">Filter Columns</h3>
+      <div>
+        <button
+          (click)="applyChanges()"
+          class="btn btn-primary"
+          style="margin-right: 10px"
+        >
+          Apply
+        </button>
+        <button class="btn btn-danger" (click)="handleDialogHide(false)">
+          Close
+        </button>
+      </div>
+    </div>
+
+    <div style="padding: 20px" class="mainContainer">
+      <div style="gap: 20px" class="d-flex align-items-center">
+        <label for="" style="min-width: 63px; margin-top: 2px">Order By</label>
+        <select
+          style="border-radius: 10px"
+          class="form-select"
+          [(ngModel)]="userListData.sortAndPaginationConfig.sortKey"
+          aria-label="Default select example"
+        >
+          <ng-container *ngFor="let col of userListData.cols">
+            <option *ngIf="col.key !== 'action'" [value]="col?.key">
+              {{ col?.header }}
+            </option>
+          </ng-container>
+        </select>
+      </div>
+
+      <div style="gap: 20px" class="d-flex align-items-center mt-3">
+        <label for="" style="min-width: 63px; margin-top: 2px">Order</label>
+        <select
+          [(ngModel)]="userListData.sortAndPaginationConfig.sortOrder"
+          style="border-radius: 10px"
+          class="form-select"
+          aria-label="Default select example"
+          [(ngModel)]="userListData.sortAndPaginationConfig.sortOrder"
+        >
+          <option [value]="col" *ngFor="let col of ['ASC', 'DESC']">
+            {{ col }}
+          </option>
+        </select>
+      </div>
+
+      <p-tabView>
+        <p-tabPanel header="Adjust Columns">
+          <ng-container *ngFor="let col of userListData.cols">
+            <div
+              style="
+                border-radius: 10px;
+                color: white;
+                padding-top: 10px;
+                margin-top: 10px;
+                padding-bottom: 10px;
+                font-size: 18px;
+                justify-content: space-between;
+                background-color: #222e3c;
+              "
+            >
+              <div
+                style="
+                  min-width: 145px;
+                  margin-right: 20px;
+                  border-radius: 5px;
+                  padding: 0 20px;
+                "
+              >
+                <p class="mb-0 d-inline">{{ col.header }} &nbsp;</p>
+                <div style="float: right">
+                  <div class="d-inline">
+                    <label
+                      style="margin-left: 30px; margin-right: 10px"
+                      for="sorting"
+                      >Show</label
+                    >
+                    <input
+                      type="checkbox"
+                      [checked]="col.visible"
+                      style="
+                        position: relative;
+                        top: 2px;
+                        width: 17px;
+                        height: 17px;
+                      "
+                    />
+                  </div>
+                  <div class="d-inline" style="float: center">
+                    <label
+                      style="margin-left: 30px; margin-right: 10px"
+                      for="sorting"
+                      >Sorting</label
+                    >
+                    <input
+                      type="checkbox"
+                      [checked]="col.sorting"
+                      [disabled]="col.key === 'action' || col.key === 'id'"
+                      style="
+                        position: relative;
+                        top: 2px;
+                        width: 17px;
+                        height: 17px;
+                      "
+                    />
+                  </div>
+                  <div class="d-inline" style="float: center">
+                    <label
+                      style="margin-left: 30px; margin-right: 10px"
+                      for="sorting"
+                      >Filters</label
+                    >
+                    <input
+                      type="checkbox"
+                      [checked]="col.filtering"
+                      [disabled]="col.key === 'action' || col.key === 'id'"
+                      style="
+                        position: relative;
+                        top: 2px;
+                        width: 17px;
+                        height: 17px;
+                      "
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </p-tabPanel>
+        <p-tabPanel header="Filters"> 
+            
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</p-dialog>

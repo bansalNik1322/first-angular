@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { MessageService } from 'primeng/api';
 import { PasswordComponent } from '../../../components/password/password.component';
-import { UiSharedModule } from '../../../Common/UIShared.module';
+import { UiSharedModule } from '../../../Shared/modules/UIShared.module';
 
 @Component({
   selector: 'app-login',

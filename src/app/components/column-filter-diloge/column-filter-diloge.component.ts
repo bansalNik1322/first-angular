@@ -1,44 +1,41 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-} from '@angular/core';
-import { DialogModule } from 'primeng/dialog';
-import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 import { UiSharedModule } from '../../Shared/modules/UIShared.module';
-import { Column } from '../../Common/interfaces/global.interface';
+
 @Component({
-  selector: 'app-dialog',
+  selector: 'app-column-filter-diloge',
   standalone: true,
   imports: [DialogModule, ButtonModule, CommonModule, UiSharedModule],
-  templateUrl: './dialog.component.html',
-  styleUrl: './dialog.component.css',
+  templateUrl: './column-filter-diloge.component.html',
+  styleUrl: './column-filter-diloge.component.css',
 })
-export class DialogComponent implements OnChanges {
+export class ColumnFilterDilogeComponent {
   @Input() visible = false;
-  @Input() sortAndPaginationConfig: any;
+  @Input() userListData: any;
   @Output() visibleChange = new EventEmitter();
   @Output() dataChanged = new EventEmitter();
   @Output() sortAndPaginationConfigChanged = new EventEmitter();
   @Output() columnFilterChangesOrNot = new EventEmitter();
 
+  constructor() {
+    this.cols = this.cols.map((i: any) => {
+      name: i?.header;
+      code: i?.key;
+    });
+  }
+
   ngOnChanges(): void {
     console.log(this.visible, 'fsg');
   }
-  @Input() cols: Column[] = [];
+  @Input() cols: any = [];
 
   showDialog() {
     this.visible = true;
   }
 
   applyChanges() {
-    this.dataChanged.emit({
-      cols: this.cols,
-      config: this.sortAndPaginationConfig,
-    });
     this.handleDialogHide(true);
   }
 
